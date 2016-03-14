@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareTube", "ShareTube\ShareTube.csproj", "{241A4FC7-371A-47DD-89AA-59BFB3BC00BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShareTube.Tests", "ShareTube.Tests\ShareTube.Tests.csproj", "{263050B7-086F-4E30-9516-A31E33E2F5F9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{4DC1E32D-52F4-499B-B9C4-76444DE5F1B0}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebsitePublishModule.psm1 = PublishScripts\AzureWebsitePublishModule.psm1
+		PublishScripts\Publish-WebApplicationWebsite.ps1 = PublishScripts\Publish-WebApplicationWebsite.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{FB0FF245-51D9-401C-9D7A-C8905D4AC807}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\ShareTube-WAWS-dev.json = PublishScripts\Configurations\ShareTube-WAWS-dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{241A4FC7-371A-47DD-89AA-59BFB3BC00BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{241A4FC7-371A-47DD-89AA-59BFB3BC00BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{241A4FC7-371A-47DD-89AA-59BFB3BC00BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{241A4FC7-371A-47DD-89AA-59BFB3BC00BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{263050B7-086F-4E30-9516-A31E33E2F5F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{263050B7-086F-4E30-9516-A31E33E2F5F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{263050B7-086F-4E30-9516-A31E33E2F5F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{263050B7-086F-4E30-9516-A31E33E2F5F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FB0FF245-51D9-401C-9D7A-C8905D4AC807} = {4DC1E32D-52F4-499B-B9C4-76444DE5F1B0}
+	EndGlobalSection
+EndGlobal

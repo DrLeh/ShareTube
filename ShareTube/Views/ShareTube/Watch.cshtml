@@ -1,0 +1,288 @@
+﻿@using ShareTube.Models
+@model ShareTube.Data.Room
+
+@{
+    ViewBag.Title = "Watch";
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ShareTube</title>
+    @Styles.Render(Links.Bundles.Styles.css)
+    @Styles.Render("~/Content/Watch.min.css")
+    @Scripts.Render(Links.Bundles.Scripts.modernizr)
+    @Scripts.Render(Links.Bundles.Scripts.jquery)
+    @Scripts.Render(Links.Bundles.Scripts.bootstrap)
+    @Scripts.Render(Links.Bundles.Scripts.jqueryui)
+    @Scripts.Render(Links.Bundles.Scripts.jquerysignalr)
+    @Scripts.Render(Links.Bundles.Scripts.notify)
+    @Scripts.Render(Links.Bundles.Scripts.unobtrusiveajax)
+    @Scripts.Render(Links.Bundles.Scripts.sharetube)
+    <script type="text/javascript" src="~/Scripts/Helpers.js"></script>
+    <script src="/signalr/hubs"></script>
+
+    <style>
+        #userlist li {
+            display:inline;
+        }
+        #tabs {
+            padding-top: 5px;
+            padding-left: 20px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            height: 80vh;
+        }
+    </style>
+
+</head>
+<body>
+    @Html.Hidden("username", (object)ViewBag.Username)
+    @Html.Hidden("roomID", Model.ID.Encode())
+    @Html.Hidden("replaceConnID", (object)ViewBag.ReplaceConnectionID)
+    @Html.Hidden("googleAccessToken", (object)ViewBag.GoogleAccessToken)
+    <input type="hidden" id="connectionID" />
+    <div class="device-xs visible-xs"></div>
+    <div class="device-sm visible-sm"></div>
+    <div class="device-md visible-md"></div>
+    <div class="device-lg visible-lg"></div>
+    <div class="container-fluid body-content">
+        <div class="row">
+            <div id="video" class="col-md-7 col-xs-12 col-sm-12 affix" style="height:100%;">
+
+            </div>
+            <div id="sidebar" class="col-md-5 col-md-push-7 col-xs-12 col-sm-12" style="min-height:400px;">
+                <div id="topWrapper" class="">
+                    <div class="form-inline" style="margin-top:10px">
+                        <div class="col-md-12">
+                            @Html.ActionLink("ShareTube room: " + Model.Name, MVC.ShareTube.Watch(Model.ID.Encode()))
+                        </div>
+                        <div class="col-md-12">
+                            <button id="btnLoop" class="btn btn-default">Loop</button>
+                            <button id="btnPrevVideo" class="btn btn-default">&lt; Prev</button>
+                            <button id="btnNextVideo" class="btn btn-default">Next &gt;</button>
+                            <button id="btnFullScreen" class="btn btn-default">
+                                <span class="glyphicon glyphicon-resize-full"></span>
+                                Full Screen
+                            </button>
+                            <script>
+                                //this script for view-only scripts.
+                                var fullScreenEnabled = false;
+                                var fullScreenVideoClass = "col-md-12";
+                                var notFullScreenVideoClass = "col-md-7";
+                                var fullScreenSidebarClass = "col-md-12";
+                                var notFullScreenSideBarClass = "col-md-5 col-md-push-7";
+                                $(function () {
+                                    adjustPlayerSize();
+                                    $('#btnFullScreen').click(function () {
+                                        fullScreenEnabled = !fullScreenEnabled;
+                                        adjustPlayerSize();
+                                    });
+
+                                    $(window).resize(function () {
+                                        adjustPlayerSize();
+                                    });
+                                });
+
+                                var firstVidLoaded = false;
+                                function adjustPlayerSize() {
+                                    var height = window.innerHeight ||
+                                        document.documentElement.clientHeight ||
+                                        document.body.clientHeight;
+
+
+                                    if (fullScreenEnabled) {
+                                        $('#video').removeClass('affix');
+                                        $('#video').removeClass(notFullScreenVideoClass).addClass(fullScreenVideoClass);
+                                        $('#sidebar').removeClass(notFullScreenSideBarClass).addClass(fullScreenSidebarClass);
+                                        $('#btnFullScreen').addClass('btn-success');
+                                        $('#btnFullScreen span').removeClass('glyphicon-resize-full').addClass('glyphicon-resize-small');
+                                    }
+                                    else {
+                                        $('#video').removeClass(fullScreenVideoClass).addClass(notFullScreenVideoClass);
+                                        if (isBreakpoint('sm') || isBreakpoint('xs')) {
+                                        } else {
+                                            $('#video').addClass('affix');
+                                        }
+                                        $('#sidebar').removeClass(fullScreenSidebarClass).addClass(notFullScreenSideBarClass);
+                                        $('#btnFullScreen').removeClass('btn-success');
+                                        $('#btnFullScreen span').removeClass('glyphicon-resize-small').addClass('glyphicon-resize-full');
+                                        $('#videoQueue').css("height", "");
+
+                                    }
+
+                                    if (isBreakpoint('sm') || isBreakpoint('xs')) {
+                                        $('#video').removeClass('affix');
+                                        $('#btnFullScreen').removeClass('btn-success').addClass('disabled');
+                                    } else {
+                                        //$('#video').addClass('affix');
+                                        $('#btnFullScreen').removeClass('disabled');
+                                    }
+
+                                    if (fullScreenEnabled) {
+                                        var height = window.innerHeight ||
+                                            document.documentElement.clientHeight ||
+                                            document.body.clientHeight;
+
+                                        var topWrapperHeight = $('#topWrapper').height();
+                                        height -= topWrapperHeight;
+                                        $('#videoQueue').height(height);
+                                    }
+                                }
+
+                                function isBreakpoint(alias) {
+                                    return $('.device-' + alias).is(':visible');
+                                }
+                            </script>
+                        </div>
+                    </div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="active" id="tab-queue-tab"><a href="#tab-queue" role="tab" data-toggle="tab">Queue</a></li>
+                        <li><a href="#tab-related" role="tab" data-toggle="tab">Related</a></li>
+                        <li><a id="tab-search-selector" href="#tab-search" role="tab" data-toggle="tab">Search</a></li>
+                        <li><a href="#tab-chat" role="tab" data-toggle="tab">Chat</a></li>
+                        <li><a href="#tab-rooms" role="tab" data-toggle="tab">Other Rooms</a></li>
+                        @*<li><a href="#tab-subs" role="tab" data-toggle="tab">My Subscriptions</a></li>*@
+                    </ul>
+                </div>
+                <div id="tabs" class="tab-content" >
+                    <div class="tab-pane in active" id="tab-queue">
+                        <div class="row form-inline" id="videourlFormGroup">
+                            <input type="text" id="videourl" class="form-control" placeholder="YouTube Url" />
+                            <button id="videoadd" class="btn btn-primary">Add Video By Url</button>
+                        </div>
+                        <div class="row" style="margin-top:5px">
+                            <table class="table table-condensed table-striped video-queue col-md-10">
+                                <tbody id="videoQueue"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-related">
+                        <div id="relatedResultsDiv" class="row related-results video-list">
+                            <div class="video-list-inner">
+                                <table class="table table-condensed">
+                                    <tbody id="relatedResults"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-search">
+                        <div class="form-inline">
+                            <div class="form-group">
+                                <div class="row">
+                                    <input class="form-control" type="text" id="searchQuery" />
+                                    <button id="searchButton" class="btn btn-primary">Search</button>
+                                    <button id="searchPrevPage" class="btn btn-default" disabled>Prev</button>
+                                    <button id="searchNextPage" class="btn btn-default" disabled>Next</button>
+                                </div>
+                                <div class="row" style="padding-top:3px;">
+                                    <div class="form-group">
+                                        Type: 
+                                        <div class="radio-inline"><input type="radio" class="radio" name="type" id="radioVideo" value="video" checked /> <label for="radioVideo">Video</label></div>
+                                        <div class="radio-inline"><input type="radio" class="radio" name="type" id="radioChannel" value="channel" /> <label for="radioAuthor">Channel</label></div>
+                                        <div class="radio-inline"><input type="radio" class="radio" name="type" id="radioPlaylist" value="playlist" /> <label for="radioPlaylist">Playlist</label></div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        Order: 
+                                        <div class="radio-inline"><input type="radio" class="radio" name="orderby" id="radioRelevance" value="relevance" checked /> <label for="radioRelevance">Relevance</label></div>
+                                        <div class="radio-inline"><input type="radio" class="radio" name="orderby" id="radioViewCount" value="viewCount" /> <label for="radioViewCount">View Count</label></div>
+                                        <div class="radio-inline"><input type="radio" class="radio" name="orderby" id="radioRating" value="rating" /> <label for="radioRating">Rating</label></div>
+                                        <div class="radio-inline"><input type="radio" class="radio" name="orderby" id="radioPublished" value="published" /> <label for="radioPublished">Publish date</label></div>
+                                    </div>
+                                </div>
+                                <div id="searchResultDiv" class="row search-results video-list">
+                                    <div class="video-list-inner">
+                                        <table class="table table-condensed">
+                                            <tbody id="searchResults"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-chat">
+                        <div id="divChat">
+                            <h3>Users</h3>
+                            @*@if (ViewBag.IsUserAuthenticated)
+                                {
+                                    <div>
+                                        @Html.Partial("_LoginPartial", Url.Action("Watch"))
+                                    </div>
+                                }*@
+                            @*else
+                                {
+                                   <div id="loginDiv">
+                                       @Html.Partial("../Account/_ExternalLoginsListPartial", new ExternalLoginListViewModel { Action = "ExternalLogin", ReturnUrl = Url.Action("WatchLoginCallback", routeValues: new { id = Model.RoomID }) })
+                                   </div>
+                                }*@
+
+                            <ul id="userlist"></ul>
+                            <div id="chat">
+                                <h4> Chat - Twitch Emotes Work!</h4>
+                                <div id="messagelog" style="overflow-y:auto;height:200px">
+                                    <ul id="discussion"></ul>
+                                </div>
+                                @*<div class="row">
+                                        <div class="pull-left" style="width:82%;padding-left:15px; padding-right:10px;">
+                                            <textarea id="message" class="form-control" style="resize:none;display:inline;"></textarea>
+                                        </div>
+                                        <div class="pull-left">
+                                            <button id="sendmessage" class="btn btn-primary" style="display:inline;">Send</button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>*@
+                                <div class="row" style="padding-right:10px">
+                                    <div class="col-xs-8 col-sm-10 col-md-8 col-lg-10">
+                                        <textarea id="message" class="form-control" style="resize:none;display:inline;"></textarea>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-2 col-md-2 col-lg-2">
+                                        <button id="sendmessage" class="btn btn-primary" style="display:inline;">Send</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane" id="tab-rooms">
+                        @{
+                            var refreshAjaxOptions = new AjaxOptions()
+                            {
+                                InsertionMode = InsertionMode.Replace,
+                                UpdateTargetId = "roomList"
+                            };
+                            using (Ajax.BeginForm("RoomListAjax", refreshAjaxOptions))
+                            {
+                                <div class="row">
+                                    <input class="btn btn-primary" type="submit" id="btnRefreshRooms" value="Refresh" />
+                                    @Html.ActionLink("Create New", MVC.ShareTube.Index(), new { @class = "btn btn-default" })
+                                </div>
+                                <div class="row">
+                                    <div id="roomList">
+                                        @Html.Partial("RoomList", (object)ViewBag.OtherRooms)
+                                    </div>
+                                </div>
+                            }
+                        }
+                    </div>
+                    <div class="tab-pane" id="tab-subs">
+                        <div class="row">
+                            <button class="btn btn-primary" id="btnLoadSubscriptions">Load Subscriptions</button>
+                        </div>
+                        <div id="divSubscriptions">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        @*<p>&copy; @DateTime.Now.Year - ShareTube</p>*@
+    </footer>
+</body>
+
+</html>

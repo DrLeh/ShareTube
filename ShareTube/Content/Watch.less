@@ -1,0 +1,183 @@
+﻿@import "bootstrap.min.css";
+
+@boxShadowColor: #CCC;
+
+
+body {
+    padding-top: 0px;
+}
+
+@currentVideoHighlight: Highlight;
+
+.currentVideo {
+    background-color: @currentVideoHighlight;
+}
+
+
+@shadowHPos: 0px;
+@shadowVPos: 0px;
+@shadowBoxBlurRadius: 5px;
+@shadowBoxShadowRadius: 5px;
+
+.inner-shadowed {
+    -moz-box-shadow: inset @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor;
+    -webkit-box-shadow: inset @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor;
+    box-shadow: inset @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor;
+}
+
+.outer-shadowed {
+    -moz-box-shadow: @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor;
+    -webkit-box-shadow: @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor;
+    box-shadow: @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor;
+}
+
+.shadow-both {
+    -moz-box-shadow: @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor, @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor inset;
+    -webkit-box-shadow: @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor, @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor inset;
+    box-shadow: @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor, @shadowHPos @shadowVPos @shadowBoxBlurRadius @shadowBoxShadowRadius @boxShadowColor inset;
+}
+
+.pointer {
+    cursor:pointer;
+}
+
+.queue-item {
+    padding: 2px;
+}
+
+@videoListBorder: #808080;
+@standardBorderRadius: 10px;
+
+.video-list {
+    /*border: 1px solid @videoListBorder;*/
+    padding: 7px;
+    /*border-radius: @standardBorderRadius;*/
+    /*.inner-shadowed;*/
+    overflow: hidden;
+}
+
+@videoListInnerRightMargin: @shadowBoxBlurRadius - 0px;
+
+.video-list-inner {
+    margin-top: 10px;
+    margin-right: @videoListInnerRightMargin;
+    /*max-height: 500px;*/
+    overflow-y: auto;
+}
+
+.video-list ul {
+    margin-top: 10px;
+}
+
+.video-list.row {
+    margin-right: -10px;
+}
+
+.search-results {
+}
+
+.search-results ul {
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+.search-results ul li {
+    margin-top: 5px;
+    padding-left: 15px;
+}
+
+@search-Result-BackgroundColor: #ffffff;
+
+.search-result {
+    background-color: @search-Result-BackgroundColor;
+}
+
+.search-result.alt {
+}
+
+.search-options td {
+    padding-left: 3px;
+}
+
+
+.related-results ul {
+}
+
+.related-results ul li {
+    margin-top: 5px;
+}
+
+.related-result {
+    background-color: @search-Result-BackgroundColor;
+}
+
+.related-result.alt {
+}
+
+
+.yt-thumb {
+    width: 185px;
+    height: 104px;
+}
+
+.yt-result {
+    padding-left: 5px;
+}
+
+.yt-title {
+    font-weight: bold;
+}
+
+.yt-author {
+    font-weight: bold;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#video {
+    background-color: black;
+}
+
+.video-not-loaded {
+    border: 1px solid @boxShadowColor;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    border-radius: 0px;
+    .shadow-both;
+}
+
+
+#chat {
+    padding: 10px;
+    border: 1px solid @boxShadowColor;
+    border-radius: @standardBorderRadius;
+    /*.inner-shadowed;*/
+}
+
+#chat ul {
+    padding-left: 0px;
+}
+
+#chat ul li {
+    padding-left: 0px;
+}
+
+.video-time {
+    padding: 0 4px;
+    font-weight: bold;
+    font-size: 11px;
+    background-color: #000;
+    color: #fff !important;
+    height: 14px;
+    line-height: 14px;
+    opacity: .75;
+    filter: alpha(opacity=75);
+    vertical-align: top;
+    zoom: 1;
+    display: inline-block;
+    margin-top:-20px;
+    margin-left:5px;
+}
+

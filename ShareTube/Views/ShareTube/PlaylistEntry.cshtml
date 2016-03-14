@@ -1,0 +1,39 @@
+﻿@model ShareTube.Data.Video
+@{
+    Layout = null;
+    var useThumb = !string.IsNullOrWhiteSpace(Model.ThumbnailUrl);
+    var theClass = Model.IsCurrent ? " success" : "";
+}
+@if(useThumb)
+{
+    <tr class="yt-result @theClass" order="@Model.Order">
+        <td>
+            <div class="media">
+                @Html.Hidden("url", Model.YouTubeUrl)
+                <div class="pull-left">
+                    <img class="yt-thumb media-object" src="@Model.ThumbnailUrl" />
+                    <div class="video-time">@Model.LengthString</div>
+                </div>
+
+                <div class="media-body">
+                    <strong class="yt-title">
+                        <h4 class="media-heading">
+                            @Model.Title
+                        </h4>
+                    </strong>
+                    <div class="yt-author">@Model.Author</div>
+                </div>
+            </div>
+        </td>
+    </tr>
+}
+else
+{
+    <tr class="yt-result @theClass" url="@Model.YouTubeUrl">
+        
+        <td>
+            <span class="glyphicon glyphicon-play"></span>
+            @Model.Title
+        </td>
+    </tr>
+}

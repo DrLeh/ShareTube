@@ -1,0 +1,36 @@
+﻿@model ShareTube.Models.RoomListViewModel
+
+
+@if (Model.Rooms.Any())
+{
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayName("Room Name")
+            </th>
+            <th>
+                @Html.DisplayName("Users")
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Rooms)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, MVC.ShareTube.Watch(item.ID.Encode()))
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserCount)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <div>
+        There are currently no public active rooms. 
+    </div>
+}

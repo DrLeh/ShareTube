@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ShareTube.Data.TrackingEntry>
+@{
+
+}
+
+@if (Model.Any())
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Request Date</th>
+                <th>Controller</th>
+                <th>Action</th>
+                <th>Full Url</th>
+                <th>User Agent String</th>
+                <th>IP</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.CreatedDate.ToString("MM/dd/yyyy hh:mm:ss.fff")</td>
+                    <td>@item.Controller</td>
+                    <td>@item.Action</td>
+                    <td>@item.RequestedUrl</td>
+                    <td>@item.UserAgentString</td>
+                    <td>@item.IPAddress</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h3 class="text-warning">None found</h3>
+}

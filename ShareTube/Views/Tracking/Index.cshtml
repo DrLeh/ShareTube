@@ -1,0 +1,31 @@
+﻿@model ShareTube.Models.Tracking.TrackingListViewModel
+@{
+    ViewBag.Title = "Tracking List";
+
+    var target = "target";
+    var formID = "form";
+    var ajaxOptions = new AjaxOptions
+    {
+        UpdateTargetId  = target,
+        HttpMethod = "POST"
+    };
+}
+
+@using (Ajax.BeginForm(MVC.Tracking._TrackingList(), ajaxOptions, new { @class = "form-inline", id = formID }))
+{
+    @Html.TextBoxFor(x => x.PageNumber)
+
+    <button type="submit" class="btn btn-primary">
+        Submit
+    </button>
+}
+
+<div id="@target">
+
+</div>
+
+<script>
+    $(function () {
+        $('#@formID').submit();
+    });
+</script>

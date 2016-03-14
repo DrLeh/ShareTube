@@ -1,0 +1,124 @@
+﻿@import "bootstrap.min.css";
+body {
+  padding-top: 0px;
+}
+.currentVideo {
+  background-color: Highlight;
+}
+.search-options td {
+  padding-left: 3px;
+}
+.inner-shadowed {
+  -moz-box-shadow: inset 0px 0px 5px 5px #cccccc;
+  -webkit-box-shadow: inset 0px 0px 5px 5px #cccccc;
+  box-shadow: inset 0px 0px 5px 5px #cccccc;
+}
+.outer-shadowed {
+  -moz-box-shadow: 0px 0px 5px 5px #cccccc;
+  -webkit-box-shadow: 0px 0px 5px 5px #cccccc;
+  box-shadow: 0px 0px 5px 5px #cccccc;
+}
+.shadow-both {
+  -moz-box-shadow: 0px 0px 5px 5px #cccccc, 0px 0px 5px 5px #cccccc inset;
+  -webkit-box-shadow: 0px 0px 5px 5px #cccccc, 0px 0px 5px 5px #cccccc inset;
+  box-shadow: 0px 0px 5px 5px #cccccc, 0px 0px 5px 5px #cccccc inset;
+}
+.pointer {
+  cursor: pointer;
+}
+.queue-item {
+  padding: 2px;
+}
+.video-list {
+  /*border: 1px solid @videoListBorder;*/
+  padding: 7px;
+  /*border-radius: @standardBorderRadius;*/
+  /*.inner-shadowed;*/
+  overflow: hidden;
+}
+.video-list-inner {
+  margin-top: 10px;
+  margin-right: 5px;
+  /*max-height: 500px;*/
+  overflow-y: auto;
+}
+.video-list ul {
+  margin-top: 10px;
+}
+.video-list.row {
+  margin-right: -10px;
+}
+.search-results ul {
+  margin-left: 0px;
+  padding-left: 0px;
+}
+.search-results ul li {
+  margin-top: 5px;
+  padding-left: 15px;
+}
+.search-result {
+  background-color: #ffffff;
+}
+.related-results ul li {
+  margin-top: 5px;
+}
+.related-result {
+  background-color: #ffffff;
+}
+.yt-thumb {
+  width: 185px;
+  height: 104px;
+}
+.yt-result {
+  padding-left: 5px;
+}
+.yt-title {
+  font-weight: bold;
+}
+.yt-author {
+  font-weight: bold;
+}
+ul {
+  list-style-type: none;
+}
+#video {
+  background-color: black;
+}
+.video-not-loaded {
+  border: 1px solid #cccccc;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  border-radius: 0px;
+  -moz-box-shadow: 0px 0px 5px 5px #cccccc, 0px 0px 5px 5px #cccccc inset;
+  -webkit-box-shadow: 0px 0px 5px 5px #cccccc, 0px 0px 5px 5px #cccccc inset;
+  box-shadow: 0px 0px 5px 5px #cccccc, 0px 0px 5px 5px #cccccc inset;
+}
+#chat {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 10px;
+  /*.inner-shadowed;*/
+}
+#chat ul {
+  padding-left: 0px;
+}
+#chat ul li {
+  padding-left: 0px;
+}
+.video-time {
+  padding: 0 4px;
+  font-weight: bold;
+  font-size: 11px;
+  background-color: #000;
+  color: #fff !important;
+  height: 14px;
+  line-height: 14px;
+  opacity: .75;
+  filter: alpha(opacity=75);
+  vertical-align: top;
+  zoom: 1;
+  display: inline-block;
+  margin-top: -20px;
+  margin-left: 5px;
+}
+/*# sourceMappingURL=Watch.css.map */
