@@ -14,5 +14,5 @@ var Video = (function () {
     function Video() {
     }
     return Video;
-})();
+}());
 //# sourceMappingURL=sharetube.js.map

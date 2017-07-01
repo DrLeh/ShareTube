@@ -112,7 +112,7 @@ namespace ShareTube.Data
 
             //random size scales with total room count, to make it more unlikely that 
             // you find a match when finding a unique room name
-            var countMod10 = ((int)(roomCount / 10));
+            var countMod10 = ((int)((float)roomCount / 10));
             var randomSize = 100 * (countMod10 == 0 ? 1 : countMod10);
             if (randomSize > 10000)
                 randomSize = 10000;

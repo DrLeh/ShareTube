@@ -16,25 +16,21 @@ namespace ShareTube.Data
 
         public override int SaveChanges()
         {
-            DateTime saveTime = DateTime.Now;
+            var saveTime = DateTime.UtcNow;
 
             var addedEntities = ChangeTracker
                 .Entries()
-                .Where(e => e.State == EntityState.Added
-                        && e.Entity is ShareTubeEntity);
+                .Where(e => e.State == EntityState.Added && e.Entity is ShareTubeEntity)
+                .Select(x => x.Entity as ShareTubeEntity);
 
             var editedEntities = ChangeTracker.Entries()
-                .Where(e => e.State == EntityState.Modified
-                        && e.Entity is ShareTubeEntity);
+                .Where(e => e.State == EntityState.Modified && e.Entity is ShareTubeEntity)
+                .Select(x => x.Entity as ShareTubeEntity);
 
             foreach (var entry in addedEntities)
-            {
-                entry.Property("CreatedDate").CurrentValue = saveTime;
-            }
+                entry.CreatedDate = saveTime;
             foreach (var entry in editedEntities)
-            {
-                entry.Property("UpdatedDate").CurrentValue = saveTime;
-            }
+                entry.UpdatedDate = saveTime;
 
             return base.SaveChanges();
 
@@ -51,8 +47,6 @@ namespace ShareTube.Data
         public virtual DbSet<UserConnection> UserConnections { get; set; }
         public virtual DbSet<Video> Videos { get; set; }
         public virtual DbSet<TrackingEntry> TrackingEntries { get; set; }
-
-
     }
 
     public class ShareTubeDataInitializer : IDatabaseInitializer<ShareTubeDataContext>

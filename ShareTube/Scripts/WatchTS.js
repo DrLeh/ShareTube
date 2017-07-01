@@ -431,6 +431,10 @@ var loadVideoFromYoutubeUrl = function (url) {
         $videoPlaceHolder.animate({ height: '0px' }, 1000, function () {
             $(this).hide();
         });
+        //$('#video').animate({ height: height }, 1000);
+        //$('html,body').animate({
+        //    scrollTop: 0
+        //}, 1000);
     }
     else {
         player.stopVideo();
@@ -555,6 +559,7 @@ function queueUpdateStatus(statusID) {
         }, queueStatusWaitTime);
         setTimeout(function () {
             if (waiting) {
+                //do nothing
             }
             else {
                 if (player) {
