@@ -1,0 +1,16 @@
+﻿@model ShareTube.Core.ViewModels.RoomListViewModel
+
+@{
+    ViewBag.Title = "ShareTube";
+}
+<header style="padding-top:20px;">
+    <img src="/Content/Images/Sharetube.png" style="height:150px; width:250px;" />
+
+    <h1> ShareTube: Watch YouTube in sync with friends!</h1>
+</header>
+<h2>Create a room!</h2>
+@Html.Partial("NewRoom", (object)ViewBag.NewRoom)
+
+<h2>Join a room!</h2>
+
+@Html.Partial("RoomList", Model)
