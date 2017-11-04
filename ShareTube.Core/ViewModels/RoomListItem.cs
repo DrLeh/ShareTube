@@ -2,9 +2,9 @@
 
 namespace ShareTube.Core.ViewModels
 {
-    public class RoomListItem
+    public class RoomSearchResult
     {
-        public Guid ID { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
         public int UserCount { get; set; }
     }

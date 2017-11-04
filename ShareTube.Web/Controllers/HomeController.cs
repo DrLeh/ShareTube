@@ -28,9 +28,9 @@ namespace ShareTube.Web.Controllers
             var rooms = _context.Rooms
                 .Where(x => !x.IsPrivate)
                 .OrderByDescending(x => x.CreatedDate).Take(10)
-                .Select(x => new RoomListItem
+                .Select(x => new RoomSearchResult
                 {
-                    ID = x.ID,
+                    Id = x.IdEncoded,
                     Name = x.Name,
                     UserCount = x.UserConnections.Count()
                 })

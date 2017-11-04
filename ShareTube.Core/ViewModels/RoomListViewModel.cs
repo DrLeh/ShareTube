@@ -6,6 +6,6 @@ namespace ShareTube.Core.ViewModels
 {
     public class RoomListViewModel
     {
-        public IEnumerable<RoomListItem> Rooms { get; set; }
+        public IEnumerable<RoomSearchResult> Rooms { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Web;
 namespace ShareTube.Data
 {
     public class ShareTubeDataContext : DbContext, IShareTubeDataContext
-	{
+    {
         public ShareTubeDataContext()
             : base("ShareTube")
         {
@@ -67,7 +67,8 @@ namespace ShareTube.Data
                     //    + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
                     context.Database.Delete();
                 }
-                context.Database.Create();
+                else
+                    context.Database.Create();
                 Seed(context);
                 SeedTracking(context, trackingEntries);
                 context.SaveChanges();

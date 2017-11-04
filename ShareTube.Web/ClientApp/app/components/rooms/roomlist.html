@@ -1,0 +1,24 @@
+
+<div ng-if="rooms">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Room Name
+            </th>
+            <th>
+                Users
+            </th>
+        </tr>
+        <tr *ngFor="let room of rooms">
+            <td>
+                <a href="rooms/room/{{room.Id}}">{{ room.Name }}</a>
+            </td>
+            <td>
+                {{room.UserCount}}
+            </td>
+        </tr>
+    </table>
+</div>
+<div ng-if="!rooms">
+    There are currently no public active rooms.
+</div>

@@ -23,7 +23,7 @@ namespace ShareTube.Core.Extensions
             guid = Guid.NewGuid();
             try
             {
-                guid = Decode(encoded);
+                guid = DecodeGuid(encoded);
             }
             catch (Exception)
             {
@@ -32,7 +32,7 @@ namespace ShareTube.Core.Extensions
             return true;
         }
 
-        public static Guid Decode(string encoded)
+        public static Guid DecodeGuid(this string encoded)
         {
             Guid attempt = Guid.Empty;
             if (Guid.TryParse(encoded, out attempt))

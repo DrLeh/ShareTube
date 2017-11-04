@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShareTube.Core.Extensions;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ namespace ShareTube.Core.Models
 {
     public class Room : Entity
     {
-
+        public string IdEncoded => ID.Encode();
         public Guid ID { get; set; } = Guid.NewGuid();
         [MinLength(1, ErrorMessage = "Room name must be at least one character in length")]
         [Required(ErrorMessage = "Room Name is required")]

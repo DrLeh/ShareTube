@@ -3,14 +3,9 @@
 @{
     ViewBag.Title = "ShareTube";
 }
-<header style="padding-top:20px;">
-    <img src="/Content/Images/Sharetube.png" style="height:150px; width:250px;" />
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}
 
-    <h1> ShareTube: Watch YouTube in sync with friends!</h1>
-</header>
-<h2>Create a room!</h2>
-@Html.Partial("NewRoom", (object)ViewBag.NewRoom)
-
-<h2>Join a room!</h2>
-
-@Html.Partial("RoomList", Model)
+<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>

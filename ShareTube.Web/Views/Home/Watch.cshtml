@@ -12,7 +12,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - ShareTube</title>
-    
+
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
@@ -23,6 +23,12 @@
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}
+
 
     @*<script type="text/javascript" src="~/Scripts/Helpers.js"></script>*@
     @*<script src="/signalr/hubs"></script>*@
@@ -214,7 +220,7 @@
             </div>
         </div>
     </div>
-    
+
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -238,7 +244,7 @@
         <script src="~/js/site.min.js" asp-append-version="true"></script>
         <script src="~/scripts/watch.js" asp-append-version="true"></script>
     </environment>
-    
+
                             <script>
                                 //this script for view-only scripts.
                                 var fullScreenEnabled = false;
