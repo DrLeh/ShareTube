@@ -1,0 +1,26 @@
+<form>
+    <div class="row">
+        <input class="form-control" type="text" name="Query" [(ngModel)]="model.Query" />
+        <button id="searchButton" class="btn btn-primary" (click)="search()">Search</button>
+        <button id="searchPrevPage" class="btn btn-default" disabled>Prev</button>
+        <button id="searchNextPage" class="btn btn-default" disabled>Next</button>
+    </div>
+    <div class="row" style="padding-top:3px;">
+        <div class="form-group">
+            Type:
+            <div class="radio-inline"><input type="radio" class="radio" [(ngModel)]="model.Type" name="type" id="radioVideo" value="video" checked /> <label for="radioVideo">Video</label></div>
+            <div class="radio-inline"><input type="radio" class="radio" [(ngModel)]="model.Type" name="type" id="radioChannel" value="channel" /> <label for="radioAuthor">Channel</label></div>
+            <div class="radio-inline"><input type="radio" class="radio" [(ngModel)]="model.Type" name="type" id="radioPlaylist" value="playlist" /> <label for="radioPlaylist">Playlist</label></div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="row">
+            Order:
+            <div class="radio-inline"><input type="radio" class="radio" [(ngModel)]="model.OrderBy" name="orderby" id="radioRelevance" value="relevance" checked /> <label for="radioRelevance">Relevance</label></div>
+            <div class="radio-inline"><input type="radio" class="radio" [(ngModel)]="model.OrderBy" name="orderby" id="radioViewCount" value="viewCount" /> <label for="radioViewCount">View Count</label></div>
+            <div class="radio-inline"><input type="radio" class="radio" [(ngModel)]="model.OrderBy" name="orderby" id="radioRating" value="rating" /> <label for="radioRating">Rating</label></div>
+            <div class="radio-inline"><input type="radio" class="radio" [(ngModel)]="model.OrderBy" name="orderby" id="radioPublished" value="published" /> <label for="radioPublished">Publish date</label></div>
+        </div>
+    </div>
+</form>
+<video-list *ngIf="videos" [videos]="videos" [roomCmp]="roomCmp"></video-list>

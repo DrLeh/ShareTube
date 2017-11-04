@@ -1,5 +1,5 @@
 
-<div ng-if="rooms">
+<div *ngIf="rooms">
     <table class="table table-striped">
         <tr>
             <th>
@@ -7,6 +7,9 @@
             </th>
             <th>
                 Users
+            </th>
+            <th>
+                <button (click)="search()" class="btn glyphicon glyphicon-refresh"></button>
             </th>
         </tr>
         <tr *ngFor="let room of rooms">
@@ -16,9 +19,10 @@
             <td>
                 {{room.UserCount}}
             </td>
+            <td></td>
         </tr>
     </table>
 </div>
-<div ng-if="!rooms">
+<div *ngIf="!rooms">
     There are currently no public active rooms.
 </div>

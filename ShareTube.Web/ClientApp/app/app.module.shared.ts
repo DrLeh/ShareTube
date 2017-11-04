@@ -9,6 +9,7 @@ import { AppComponent } from './components/app/app.component';
 import { HomeComponent } from './components/home/home.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { RoomsModule } from './components/rooms/rooms.module';
+import { VideoModule } from './components/video/video.module';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { RoomsModule } from './components/rooms/rooms.module';
             { path: '**', redirectTo: 'home' },
         ]),
         NgbModule.forRoot(),
-        RoomsModule.forRoot()
+        RoomsModule.forRoot(),
+        VideoModule.forRoot()
     ]
 })
 export class AppModuleShared {

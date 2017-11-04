@@ -1,0 +1,13 @@
+<table>
+    <tr *ngFor="let video of videos" (click)="roomCmp.enqueue(video)">
+        <td>
+            <img src="{{video.ThumbnailUrl}}" />
+        </td>
+        <td>
+            {{video.Author}} - {{video.Title}}
+        </td>
+        <td>
+            {{video.ID}}
+        </td>
+    </tr>
+</table>

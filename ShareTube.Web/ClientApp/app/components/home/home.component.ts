@@ -1,26 +1,23 @@
 import { Component } from '@angular/core';
 import { Room } from '../rooms/Room';
 import { RoomsService } from '../rooms/rooms.service';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 @Component({
     selector: 'home',
     templateUrl: './home.component.html'
 })
 export class HomeComponent {
-  public room: Room;
-  private service: RoomsService;
+    public room: Room;
 
-  constructor(service: RoomsService) {
-    this.service = service;
-    this.room = new Room();
-  }
+    constructor(private service: RoomsService, private router: Router) {
+        this.room = new Room();
+    }
 
-  public newRoom(): void {
-      this.service.newRoom(this.room).subscribe(f =>
-    {
-        const id = f.IdEncoded;
-        console.log(id);
-    });
-  }
-
+    public newRoom(): void {
+        this.service.newRoom(this.room).subscribe(f => {
+            const id = f.IdEncoded;
+            this.router.navigate([`/rooms/room/${id}`]);
+        });
+    }
 }

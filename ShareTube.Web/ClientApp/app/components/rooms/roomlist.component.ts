@@ -6,15 +6,19 @@ import { RoomSearchResult } from './RoomSearchResult';
 
 
 @Component({
-  selector: 'room-list',
-  templateUrl: './roomlist.html'
+    selector: 'room-list',
+    templateUrl: './roomlist.html'
 })
 export class RoomListComponent {
-  public rooms: RoomSearchResult[];
+    public rooms: RoomSearchResult[];
 
-  constructor(service: RoomsService) {
-    service.search().subscribe(result => {
-      this.rooms = result;
-    });
-  }
+    constructor(private service: RoomsService) {
+        this.search();
+    }
+
+    private search() {
+        this.service.search().subscribe(result => {
+            this.rooms = result;
+        });
+    }
 }

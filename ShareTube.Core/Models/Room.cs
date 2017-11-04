@@ -33,8 +33,7 @@ namespace ShareTube.Core.Models
             set => PlayerStatusID = PlayerStatus.IDToCodeMapping.Single(x => x.Value == (int)value).Key;
         }
 
-        public string CurrentVideoID { get { return CurrentVideo?.ID; } }
-        public Video CurrentVideo { get { return Videos.SingleOrDefault(x => x.IsCurrent); } }
+        public Video CurrentVideo => Videos.SingleOrDefault(x => x.IsCurrent) ?? Videos.OrderBy(x => x.Order).FirstOrDefault();
         public IEnumerable<User> Users => UserConnections.Select(x => x.User);
 
         public UserConnection HostConnection => UserConnections.FirstOrDefault(x => x.IsHost);

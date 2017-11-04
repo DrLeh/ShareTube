@@ -1,3 +1,11 @@
 <div class='row'>
+    <button (click)="load()" class="btn glyphicon glyphicon-refresh"></button>
 
+    <table>
+        <tr *ngFor="let vid of videos">
+            <td>
+                <button (click)="roomCmp.setCurrentVideo(vid)">{{vid.Title}} - {{vid.Author}}</button>
+            </td>
+        </tr>
+    </table>
 </div>

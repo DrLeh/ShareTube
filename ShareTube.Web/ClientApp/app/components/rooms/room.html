@@ -14,25 +14,26 @@
     </style>
 
 <div class="row">
-    <strong>Room: {{room.Name}}</strong>
-    <div id="video" class="col-md-7 col-xs-12 col-sm-12 affix" style="height:100%;">
 
+    <strong *ngIf="room">Room: {{room.Name}} - encoded: {{room.IdEncoded}}</strong>
+    <div id="video" class="col-md-7 col-xs-12 col-sm-12 affix" style="height:100%;">
+        Current Video: <div *ngIf="currentVideo">{{currentVideo.Title}}</div>
     </div>
     <div id="sidebar" class="col-md-5 col-md-push-7 col-xs-12 col-sm-12" style="min-height:400px;">
         <ngb-tabset id="tabs">
             <ngb-tab title="Queue">
                 <ng-template ngbTabContent>
-                    <p></p>
+                    <queue *ngIf="room" [room]="room" [roomCmp]="this"></queue>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="Related">
                 <ng-template ngbTabContent>
-                    <p></p>
+                    <related *ngIf="room" [currentVideo]="currentVideo" [roomCmp]="this"></related>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="Search">
                 <ng-template ngbTabContent>
-                    <p></p>
+                    <search *ngIf="room" [room]="room" [roomCmp]="this"></search>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="Chat">

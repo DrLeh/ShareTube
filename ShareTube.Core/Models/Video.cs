@@ -1,4 +1,5 @@
-﻿using ShareTube.Core.Helpers;
+﻿using Newtonsoft.Json;
+using ShareTube.Core.Helpers;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -30,11 +31,27 @@ namespace ShareTube.Core.Models
             }
         }
 
-        [NotMapped]
-        public string YouTubeUrl
+        //[NotMapped]
+        //[JsonIgnore]
+        //public string YouTubeUrl
+        //{
+        //    get => UrlHelper.GetYouTubeUrlFromID(ID);
+        //    set => ID = UrlHelper.GetYouTubeID(value);
+        //}
+
+        public static Video CopyFrom(Video other)
         {
-            get => UrlHelper.GetYouTubeUrlFromID(ID);
-            set => ID = UrlHelper.GetYouTubeID(value);
+            return new Video
+            {
+                ID = other.ID,
+                RoomID = other.RoomID,
+                Order = other.Order,
+                Author = other.Author,
+                Title = other.Title,
+                ThumbnailUrl = other.ThumbnailUrl,
+                Length = other.Length,
+                IsCurrent = other.IsCurrent
+            };
         }
     }
 }

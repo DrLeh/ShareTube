@@ -1,7 +1,7 @@
 
 export class Room {
-  Id?: string;
-  IdEncoded?: string;
-  Name: number;
+  ID: string;
+  IdEncoded: string;
+  Name: string;
   IsPrivate: boolean = false;
 }
