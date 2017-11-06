@@ -1,0 +1,5 @@
+{
+  "globalDependencies": {
+    "youtube": "registry:dt/youtube#0.0.0+20170317175451"
+  }
+}

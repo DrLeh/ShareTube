@@ -11,34 +11,37 @@ import { YouTubeSearchService } from '../video/youtubeSearch.service';
 import { VideoService } from '../video/video.service';
 import { VideoModule } from '../video/video.module';
 
+import { PlayerModule } from '../player/player.module';
+
 import { routes } from './routes';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        RouterModule.forChild(routes),
-        NgbModule.forRoot(),
-        VideoModule.forRoot()
-    ],
-    declarations: [
-        RoomListComponent,
-        RoomComponent,
-    ],
-    exports: [
-        RoomListComponent,
-        RoomComponent,
-    ],
-    providers: [RoomsService, VideoService, YouTubeSearchService]
+  imports: [
+    CommonModule,
+    RouterModule.forChild(routes),
+    NgbModule.forRoot(),
+    VideoModule.forRoot(),
+    PlayerModule.forRoot()
+  ],
+  declarations: [
+    RoomListComponent,
+    RoomComponent,
+  ],
+  exports: [
+    RoomListComponent,
+    RoomComponent,
+  ],
+  providers: [RoomsService, VideoService, YouTubeSearchService]
 })
 export class RoomsModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: RoomsModule,
-            providers: [
-                RoomsService,
-                VideoService,
-                YouTubeSearchService
-            ]
-        };
-    }
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: RoomsModule,
+      providers: [
+        RoomsService,
+        VideoService,
+        YouTubeSearchService
+      ]
+    };
+  }
 }

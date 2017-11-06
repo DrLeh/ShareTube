@@ -18,6 +18,7 @@
     <strong *ngIf="room">Room: {{room.Name}} - encoded: {{room.IdEncoded}}</strong>
     <div id="video" class="col-md-7 col-xs-12 col-sm-12 affix" style="height:100%;">
         Current Video: <div *ngIf="currentVideo">{{currentVideo.Title}}</div>
+        <player *ngIf="currentVideo" [video]="currentVideo"></player>
     </div>
     <div id="sidebar" class="col-md-5 col-md-push-7 col-xs-12 col-sm-12" style="min-height:400px;">
         <ngb-tabset id="tabs">

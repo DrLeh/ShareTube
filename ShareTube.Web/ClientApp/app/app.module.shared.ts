@@ -10,6 +10,7 @@ import { HomeComponent } from './components/home/home.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { RoomsModule } from './components/rooms/rooms.module';
 import { VideoModule } from './components/video/video.module';
+import { PlayerModule } from './components/player/player.module';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { VideoModule } from './components/video/video.module';
         ]),
         NgbModule.forRoot(),
         RoomsModule.forRoot(),
-        VideoModule.forRoot()
+        VideoModule.forRoot(),
+        PlayerModule.forRoot()
     ]
 })
 export class AppModuleShared {

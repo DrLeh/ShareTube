@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/d18dc045edc38ad291d73f5f526d5a71e87db524/youtube/index.d.ts",
+    "raw": "registry:dt/youtube#0.0.0+20170317175451",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/d18dc045edc38ad291d73f5f526d5a71e87db524/youtube/index.d.ts"
+  }
+}
