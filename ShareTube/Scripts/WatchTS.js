@@ -6,7 +6,7 @@
 /// <reference path="typings/notify/notify.d.ts" />
 /// <reference path="typings/signalr/signalr.d.ts" />
 /// <reference path="typings/youtube/youtube.d.ts" />
-/// <reference path="Hubs.d.ts" />
+///// <reference path="SignalrHubs.d.ts" />
 /// <reference path="helpers.ts" />
 //#region divs
 var loggingOn = false;
@@ -226,7 +226,7 @@ var sendCurrentTimeToServer = function () {
     if (player) {
         if (userIsHost) {
             if (player) {
-                if (player.getPlayerState() == YT.PlayerState.PLAYING) {
+                if (player.getPlayerState() == YT.PlayerState.PLAYING) { //don't update time if it's not playing.
                     var currentTime = player.getCurrentTime();
                     var sentTime = new Date().getTime();
                     log("sending time update at: " + sentTime + " for player time: " + currentTime);
@@ -327,7 +327,7 @@ var broadcastMessage = function (name, message, type) {
         fullMessage = '<li class="text-info">' + message + '</li>';
     }
     console.log(fullMessage);
-    fullMessage = replaceTwitchEmotes(fullMessage);
+    //fullMessage = replaceTwitchEmotes(fullMessage);
     $('#discussion').append(fullMessage);
     scrollChat();
 };

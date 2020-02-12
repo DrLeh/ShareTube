@@ -64,7 +64,6 @@ namespace ShareTube
                         "~/Scripts/jquery.unobtrusive-ajax.min.js"));
 
             bundles.Add(new ScriptBundle(Links.Bundles.Scripts.sharetube).Include(
-                        "~/Scripts/TwitchEmotes.js",
                         "~/Scripts/WatchTS.js"
                         ));
 

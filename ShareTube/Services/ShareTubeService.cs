@@ -319,7 +319,9 @@ namespace ShareTube.Data
 				video.IsCurrent = true;
 			Context.Videos.Add(video);
 			Context.SaveChanges();
-			return video;
+            if (video.Order == 1)
+                SetCurrentVideo(roomID, video.ID);
+            return video;
 		}
 
 		public Video GetCurrentVideo(Guid roomID)

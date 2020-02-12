@@ -158,11 +158,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShareTube\ShareTube.csproj">
-      <Project>{241A4FC7-371A-47DD-89AA-59BFB3BC00BB}</Project>
+      <Project>{241a4fc7-371a-47dd-89aa-59bfb3bc00bb}</Project>
       <Name>ShareTube</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

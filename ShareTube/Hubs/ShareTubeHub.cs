@@ -271,6 +271,8 @@ namespace ShareTube.Hubs
                 return;
 
             ClientContract.VideoAdded(RoomClients, json);
+            if (videoAdded.Order == 1)
+                Server_SelectNewVideo(url);
 
             RoomClients_BroadcastVideoMessage(CurrentUser.Name, name, author);
         }

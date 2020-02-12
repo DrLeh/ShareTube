@@ -10,7 +10,7 @@
 //}
 //class Video implements IVideo{
 //}
-var Video = (function () {
+var Video = /** @class */ (function () {
     function Video() {
     }
     return Video;

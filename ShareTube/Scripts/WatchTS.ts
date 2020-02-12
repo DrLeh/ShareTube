@@ -8,7 +8,7 @@
 /// <reference path="typings/notify/notify.d.ts" />
 /// <reference path="typings/signalr/signalr.d.ts" />
 /// <reference path="typings/youtube/youtube.d.ts" />
-/// <reference path="Hubs.d.ts" />
+///// <reference path="SignalrHubs.d.ts" />
 /// <reference path="helpers.ts" />
 
 //#region divs
@@ -415,7 +415,7 @@ var broadcastMessage = function (name, message: string, type) {
         fullMessage = '<li class="text-info">' + message + '</li>';
     }
     console.log(fullMessage);
-    fullMessage = replaceTwitchEmotes(fullMessage);
+    //fullMessage = replaceTwitchEmotes(fullMessage);
     $('#discussion').append(fullMessage);
     scrollChat();
 }

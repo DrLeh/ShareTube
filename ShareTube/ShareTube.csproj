@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ShareTube</RootNamespace>
     <AssemblyName>ShareTube</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>
@@ -26,12 +26,13 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>3.6</TypeScriptToolsVersion>
     <TargetFrameworkProfile />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <ApplicationInsightsResourceId>/subscriptions/0ceafb35-e1a0-475b-a85d-872557b735cc/resourcegroups/Default-ApplicationInsights-CentralUS/providers/microsoft.insights/components/ShareTube</ApplicationInsightsResourceId>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -211,9 +212,9 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -289,6 +290,11 @@
     <Compile Include="Data\Entities.cs" />
     <Compile Include="Data\ExceptionExtensions.cs" />
     <Compile Include="Data\IShareTubeDataContext.cs" />
+    <Compile Include="Migrations\202002100146233_initial.cs" />
+    <Compile Include="Migrations\202002100146233_initial.Designer.cs">
+      <DependentUpon>202002100146233_initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ShareTube\VideoViewModel.cs" />
     <Compile Include="Services\IShareTubeService.cs" />
     <Compile Include="Models\Tracking\ITrackingService.cs" />
@@ -393,6 +399,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\ShareTube - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ShareTube - Web Deploy1.pubxml" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
@@ -436,10 +443,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="favicon.ico" />
-    <Content Include="Scripts\Hubs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Hubs.d.ts</LastGenOutput>
-    </Content>
     <None Include="T4MVC.tt.hooks.t4" />
     <None Include="T4MVC.tt.settings.xml" />
     <Content Include="Web.config" />
@@ -486,17 +489,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="Scripts\Hubs.d.ts">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Hubs.tt</DependentUpon>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="Scripts\typings\signalr\signalr.d.ts" />
-    <TypeScriptCompile Include="Scripts\typings\twitchemotes\twitchemotes.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\youtube\youtube.d.ts" />
     <TypeScriptCompile Include="Scripts\ShareTubeHub.ts" />
-    <TypeScriptCompile Include="Scripts\TwitchEmotes.ts" />
     <TypeScriptCompile Include="Scripts\WatchTS.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202002100146233_initial.resx">
+      <DependentUpon>202002100146233_initial.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

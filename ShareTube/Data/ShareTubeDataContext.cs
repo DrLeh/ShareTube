@@ -65,7 +65,7 @@ namespace ShareTube.Data
                     //    "ALTER DATABASE [" 
                     //    + context.Database.Connection.Database
                     //    + "] SET SINGLE_USER WITH ROLLBACK IMMEDIATE");
-                    context.Database.Delete();
+                    //context.Database.Delete();
                 }
                 else
                     context.Database.Create();
@@ -77,8 +77,8 @@ namespace ShareTube.Data
 
         private void Seed(ShareTubeDataContext ctx)
         {
-            ctx.Database.ExecuteSqlCommand("create function ConnectionHostCount() returns int as begin declare @ret int = 0; select @ret = count(id) from Userconnections group by roomid, ishost; return @ret end");
-            ctx.Database.ExecuteSqlCommand("ALTER TABLE UserConnections ADD CONSTRAINT CK_Single_Host CHECK (dbo.ConnectionHostCount() <= 1)");
+            //ctx.Database.ExecuteSqlCommand("create function ConnectionHostCount() returns int as begin declare @ret int = 0; select @ret = count(id) from Userconnections group by roomid, ishost; return @ret end");
+            //ctx.Database.ExecuteSqlCommand("ALTER TABLE UserConnections ADD CONSTRAINT CK_Single_Host CHECK (dbo.ConnectionHostCount() <= 1)");
 
             ctx.PlayerStatuses.Add(new PlayerStatus(ShareTubePlayerStatus.UnStarted));
             ctx.PlayerStatuses.Add(new PlayerStatus(ShareTubePlayerStatus.Ended));
