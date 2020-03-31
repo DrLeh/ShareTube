@@ -158,7 +158,7 @@ namespace ShareTube.Data.Context
         }
     }
 
-    public class FieldDbContextFactory : IDesignTimeDbContextFactory<ShareTubeDbContext>
+    public class ShareTubeDbContextFactory : IDesignTimeDbContextFactory<ShareTubeDbContext>
     {
         /// <summary>
         /// this is the endpoint used in Package Manager console. Change this to update a different database
