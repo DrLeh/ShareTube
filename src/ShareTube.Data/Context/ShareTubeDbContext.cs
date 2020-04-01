@@ -165,7 +165,7 @@ namespace ShareTube.Data.Context
         /// </summary>
         public ShareTubeDbContext CreateDbContext(string[] args)
         {
-            var connString = "Data Source=localhost;Initial Catalog=ShareTube;Trusted_Connection=True;";
+            var connString = "Server=localhost;Database=ShareTube;User Id=sa;Password=passwordABC123;";
             var optionsBuilder = new DbContextOptionsBuilder<ShareTubeDbContext>();
             optionsBuilder.UseSqlServer(connString);
 

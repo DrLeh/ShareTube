@@ -23,6 +23,7 @@ namespace ShareTube.Core.Startup
 
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IRoomLoader, RoomLoader>();
+            services.AddScoped<IRoomNameGenerator, RoomNameGenerator>();
         }
     }
 }

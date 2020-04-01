@@ -20,7 +20,7 @@ namespace ShareTube.Web
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
+                    webBuilder.UseStartup<WebStartup>();
                 });
     }
 }
